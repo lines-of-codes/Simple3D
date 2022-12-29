@@ -1,0 +1,10 @@
+{
+  "name": "simple3d",
+  "version": "1.0.0",
+  "dependencies": [
+    "lua",
+    "raylib",
+    "nlohmann-json",
+    "fmt"
+  ]
+}
