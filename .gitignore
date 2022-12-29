@@ -1,5 +1,6 @@
 /.vs/
 /vcpkg_installed/
+/Simple3D/x64/
 
 # Prerequisites
 *.d
