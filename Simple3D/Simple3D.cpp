@@ -23,6 +23,7 @@ int main()
 
     std::cout << "Hello World!\n";
     Simple3D::GameManager gm = Simple3D::GameManager();
+    gm.LoadLuaCodeString("function OnLoad() print(\"Hello world from Lua!\") end");
     gm.Init(&config);
     gm.Run();
 

@@ -4,6 +4,7 @@ Simple3D::GameManager::GameManager()
 {
 	camera_manager = CameraManager();
 	lua_manager = LuaManager();
+	lua_manager.InitializeNewState();
 	sys = SystemInstances(&lua_manager);
 #ifdef _DEBUG
 	editor = std::nullopt;
@@ -18,6 +19,12 @@ void Simple3D::GameManager::Init(Configuration* configuration)
 	Init(window_info.window_width, window_info.window_height, window_info.window_title.c_str());
 	SetWindowPosition(window_info.window_pos.x, window_info.window_pos.y);
 	SetTargetFPS(window_info.targetfps);
+
+	int func_status = lua_manager.CallFunction("OnInit");
+	if (func_status != LUA_OK)
+	{
+		std::cout << "Failed to call OnInit() function inside the lua code. Status Code: " << func_status << std::endl;
+	}
 }
 
 void Simple3D::GameManager::Init(unsigned short windowWidth, unsigned short windowHeight, const char* title)
@@ -25,13 +32,24 @@ void Simple3D::GameManager::Init(unsigned short windowWidth, unsigned short wind
 	InitWindow(windowWidth, windowHeight, title);
 }
 
+void Simple3D::GameManager::LoadLuaCodeString(const char* code)
+{
+	lua_manager.LoadString(code);
+}
+
+void Simple3D::GameManager::LoadLuaFile(const char* filename)
+{
+	lua_manager.LoadFile(filename);
+}
+
 void Simple3D::GameManager::Run()
 {
 	SetCameraMode(camera_manager.current_camera, CAMERA_FREE);
 
 	MainLoop();
-
+	
 	CloseWindow();
+	lua_manager.OnApplicationExit();
 }
 
 void Simple3D::GameManager::MainLoop()
@@ -49,8 +67,6 @@ void Simple3D::GameManager::MainLoop()
 
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
-
-		DrawFPS(10, 10);
 
 		BeginMode3D(camera_manager.current_camera);
 

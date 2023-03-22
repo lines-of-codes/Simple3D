@@ -68,10 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="Resources\Test.lua" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Montserrat-Bold.ttf" />
-    <Font Include="Resources\Montserrat-Regular.ttf" />
+    <Font Include="Resources\Montserrat-SemiBold.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Simple3D.rc">

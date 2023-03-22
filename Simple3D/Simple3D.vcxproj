@@ -159,12 +159,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="Resources\Test.lua">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Montserrat-Bold.ttf">
       <DeploymentContent>true</DeploymentContent>
     </Font>
-    <Font Include="Resources\Montserrat-Regular.ttf">
+    <Font Include="Resources\Montserrat-SemiBold.ttf">
       <DeploymentContent>true</DeploymentContent>
     </Font>
   </ItemGroup>

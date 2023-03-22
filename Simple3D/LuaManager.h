@@ -8,8 +8,13 @@ namespace Simple3D
 	{
 	public:
 		void InitializeNewState();
+		/// <summary>
+		/// Do some clean up.
+		/// </summary>
+		void OnApplicationExit();
 		void LoadFile(const char* filename);
-		void CallFunction(const char* function_name);
+		void LoadString(const char* code);
+		int CallFunction(const char* function_name);
 		/// <summary>
 		/// Gets the current amount of memory used by lua in kbytes.
 		/// </summary>

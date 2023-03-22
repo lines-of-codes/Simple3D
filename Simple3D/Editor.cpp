@@ -9,15 +9,15 @@ std::string empty = "";
 
 Simple3D::Editor::Editor(Configuration* configuration)
 {
-	GuiSetFont(LoadFont("./Resources/Montserrat-Bold.ttf"));
+	GuiSetFont(LoadFont("./Resources/Montserrat-SemiBold.ttf"));
 	GuiSetStyle(DEFAULT, TEXT_SIZE, 15);
 	GuiSetStyle(CHECKBOX, TEXT_PADDING, 8);
 
 	show_settings_button = CreateNewRectangle(50.0f, configuration->window_info.window_height - 80.0f, 30, 30);
 	show_stats_button = CreateNewRectangle(90.0f, configuration->window_info.window_height - 80.0f, 60, 30);
 
-	stats_window = CreateNewRectangle(configuration->window_info.window_width - 220.0f, 20.0f, 150.0f, 150.0f);
-	stats_text = CreateNewRectangle(stats_window, 25, 25, 100, 100);
+	stats_window = CreateNewRectangle(configuration->window_info.window_width - 275.0f, 20.0f, 250, 100);
+	stats_text = CreateNewRectangle(stats_window, 25, 25, 200, 50);
 
 	unsigned short i = 0;
 	for (std::map<const char*, unsigned short>::iterator iter = possible_keys.begin(); iter != possible_keys.end(); ++iter)
@@ -78,7 +78,8 @@ void Simple3D::Editor::Render(SystemInstances sys)
 
 	if (show_stats)
 	{
-		GuiDrawText(fmt::format("FPS: {}\nLua's Memory Usage: {}", GetFPS(), sys.lua_manager->GetMemoryUsed()).c_str(), stats_text, TEXT_ALIGN_LEFT, BLACK);
+		show_stats = !GuiWindowBox(stats_window, "Statistics");
+		GuiDrawText(fmt::format("FPS: {}\nLua's Memory Usage: {} KB", GetFPS(), sys.lua_manager->GetMemoryUsed()).c_str(), stats_text, TEXT_ALIGN_LEFT, BLACK);
 	}
 }
 #endif

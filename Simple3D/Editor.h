@@ -55,6 +55,7 @@ namespace Simple3D
 				return !(lhs == rhs);
 			}
 		};
+		
 		Editor(Configuration* configuration);
 		void Render(SystemInstances sys);
 
@@ -186,7 +187,7 @@ namespace Simple3D
 		
 		bool show_settings = false;
 		bool show_stats = false;
-		const Rectangle update_camera_checkbox = CreateNewRectangle(30, 40, 25, 25);
+		Rectangle update_camera_checkbox = CreateNewRectangle(30, 30, 25, 25);
 		Rectangle show_settings_button;
 		Rectangle show_stats_button;
 
@@ -196,17 +197,17 @@ namespace Simple3D
 
 		// -- Settings Window --
 		SettingsTab active_tab_index = SettingsTab::KEYBINDS;
-		const Rectangle settings_window = CreateNewRectangle(50, 50, 500, 500);
-		const Rectangle settings_tabs = CreateNewRectangle(settings_window, 50, 25, 200, 30);
+		Rectangle settings_window = CreateNewRectangle(50, 50, 500, 500);
+		Rectangle settings_tabs = CreateNewRectangle(settings_window, 50, 25, 200, 30);
 
-		const Rectangle keybind_list_view = CreateNewRectangle(settings_tabs, 0, 50, 400, 200);
+		Rectangle keybind_list_view = CreateNewRectangle(settings_tabs, 0, 50, 400, 200);
 		int keybind_list_scroll_index = 0;
 		Keybinds keybind_list_active = Keybinds::PAN;
-		const Rectangle selected_key_block = CreateNewRectangle(keybind_list_view, 0, 250, 400, 150);
-		const Rectangle selected_key_label = CreateNewRectangle(selected_key_block, 20, 0, 100, 50);
-		const Rectangle pressed_key_label = CreateNewRectangle(selected_key_label, 0, 30, 100, 50);
+		Rectangle selected_key_block = CreateNewRectangle(keybind_list_view, 0, 250, 400, 150);
+		Rectangle selected_key_label = CreateNewRectangle(selected_key_block, 20, 0, 100, 50);
+		Rectangle pressed_key_label = CreateNewRectangle(selected_key_label, 0, 30, 100, 50);
 
-		const Rectangle about_text = CreateNewRectangle(settings_tabs, 0, 50, 200, 100);
+		Rectangle about_text = CreateNewRectangle(settings_tabs, 0, 50, 200, 100);
 	};
 }
 #endif // _DEBUG
